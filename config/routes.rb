@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get '/contact', to: 'home#contact'
 
+  get '/signup', to: 'users#new'
+
   resources :users
 
 

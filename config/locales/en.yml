@@ -30,4 +30,25 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        email: "Adres email"
+        name: "Nazwa użytkownika"
+        password: "Hasło"
+        password_confirmation: "Hasło"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "jest wymagany"
+              invalid: "jest nieprawidłowy"
+            name:
+              blank: "jest wymagana"
+            password:
+              blank: "jest wymagane"
+              length: "musi mieć minimum 6 znaków"
+            password_confirmation:
+              blank: "Powtórz"
+
