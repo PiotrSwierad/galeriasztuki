@@ -2,11 +2,22 @@
 	<div class="container">
 		<%= link_to "Galeria sztuki", root_path, id: "logo" %>
 		<nav>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-left">
 				<li><%= link_to "Katalog",   '#' %></li>
 				<li><%= link_to "O nas",   about_path %></li>
 				<li><%= link_to "Kontakt",   contact_path %></li>
-				<li><%= link_to "Zaloguj się", 'login' %></li>
+			</ul>
+		</nav>
+
+		<nav>
+			<ul class="nav navbar-nav navbar-right">
+				<%# if logged_in? %>
+				<li><%= link_to "Witaj ", '#'%>
+				<li><%= link_to "Wyloguj się", '#' %></li>
+				<%# else %>
+				<li><%= link_to "Logowanie", '/login'%>
+				<li><%= link_to "Rejestracja", '/signup' %></li>
+				<%# end %>
 			</ul>
 		</nav>
 	</div>	

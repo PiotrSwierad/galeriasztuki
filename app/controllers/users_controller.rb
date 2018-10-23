@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
     if @user.save
+      flash[:success] = "Rejestracja zakończona powodzeniem"
       redirect_to @user
     else
       render 'new'
