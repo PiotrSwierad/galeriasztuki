@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
     if @user.save
       flash[:success] = "Rejestracja zakończona powodzeniem"
-      redirect_to @user
+      redirect_to root_path
     else
       render 'new'
     end

@@ -14,11 +14,11 @@ Rails.application.routes.draw do
 
   post '/signup', to: 'users#create'
 
-  get '/login', to: 'sessions#new'
+  get '/signin', to: 'sessions#new'
 
-  post '/login', to: 'sessions#create'
+  post '/signin', to: 'sessions#create'
 
-  delete '/login', to: 'sessions#destroy'
+  delete '/signout', to: 'sessions#destroy'
 
   resources :users
 

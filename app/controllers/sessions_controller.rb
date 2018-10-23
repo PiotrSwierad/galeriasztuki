@@ -7,15 +7,17 @@ class SessionsController < ApplicationController
   	user = User.find_by(email: params[:session][:email].downcase)
   	# jeżeli użytkownik istnieje && jego hasło jest prawidłowe
     if user && user.authenticate(params[:session][:password])
-    	#todo login
+    	sign_in user
+      redirect_to user
     else
     	flash.now[:danger] = 'Nieprawidłowy email lub hasło!'
     	render 'new'
     end
-
   end
 
   def destroy
+    sign_out
+    redirect_to root_url
   end
 
 end

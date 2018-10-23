@@ -34,7 +34,6 @@ en:
     attributes:
       user:
         email: "Adres email"
-        name: "Nazwa użytkownika"
         password: "Hasło"
         password_confirmation: "Hasło"
     errors:
@@ -44,8 +43,6 @@ en:
             email:
               blank: "jest wymagany"
               invalid: "jest nieprawidłowy"
-            name:
-              blank: "jest wymagana"
             password:
               blank: "jest wymagane"
               length: "musi mieć minimum 6 znaków"
