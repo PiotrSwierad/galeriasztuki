@@ -12,7 +12,7 @@
 		<nav>
 			<ul class="nav navbar-nav navbar-right">
 				<% if signed_in? %>
-				<li><%= link_to "Witaj #{current_user.email}", '#'%>
+				<li><%= link_to "Witaj #{current_user.email}", "users/#{current_user.id}" %>
 				<li><%= link_to "Wyloguj się", signout_path, method: :delete %></li>
 				<% else %>
 				<li><%= link_to "Logowanie", signin_path %>

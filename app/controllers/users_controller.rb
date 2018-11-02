@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+  before_action :verify_user, only: [:show, :edit, :update, :destroy]
+
   def index
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
   end
 
   def new
@@ -27,5 +29,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def verify_user
+    @user = User.find_by_id(params[:id])
+    if current_user != @user
+      redirect_to root_path
+    end
   end
 end
