@@ -1,0 +1,16 @@
+<% provide(:title, 'Wpis') %>
+
+<%= image_tag(@art.image, style: 'width:50%') %>
+
+<p>
+  <strong>Author:</strong>
+  <%= @art.author %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @art.title %>
+</p>
+
+<%= link_to 'Edit', edit_art_path(@art) %> |
+<%= link_to 'Back', arts_path %>
