@@ -1,11 +1,13 @@
-<header class="navbar navbar-inverse">
-	<div class="container">
-		<nav>
+<div class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+				<%= link_to image_tag("logo.jpg"), root_path %>
+		</div>
+		<nav>			
 			<ul class="nav navbar-nav navbar-left">
-				<li><%= link_to "Galeria sztuki", root_path, id: "logo" %></li>
-				<li><%= link_to "Katalog",   '#' %></li>
-				<li><%= link_to "O nas",   about_path %></li>
-				<li><%= link_to "Kontakt",   contact_path %></li>
+				<li><%= link_to "Katalog", arts_path %></li>
+				<li><%= link_to "O nas", about_path %></li>
+				<li><%= link_to "Kontakt", contact_path %></li>
 			</ul>
 		</nav>
 
@@ -21,4 +23,5 @@
 			</ul>
 		</nav>
 	</div>	
-</header>
+</div>
+

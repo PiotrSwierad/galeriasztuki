@@ -4,12 +4,12 @@
 
 <div class="row text-center text-lg-left">
 	<% @arts.each do |art| %>  		
-  		<div class="col-lg-3 col-md-4 col-xs-6" style="padding: 10px">
-  			<a href="#" class="d-block mb-4 h-100">
-  				<%= link_to art do %>
-  				<%= image_tag(art.image, style: 'height:200px', class: "img-fluid img-thumbnail") %>
-  				<% end %>
-			</a>                    
+  		<div class="col-lg-3 col-md-4 col-xs-6" style="padding: 10px">		
+  			<%= link_to art.image, :rel => "lightbox", data: { title: art.title+" - "+art.author} do %>
+  				<%= image_tag art.image.variant(resize: "x200"), class: "img-fluid img-thumbnail" %>
+  			<% end %>
 		</div>
  	<% end %>
 </div>
+
+
