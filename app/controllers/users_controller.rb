@@ -21,7 +21,9 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
+    @user.isAdmin = false;
     if @user.save
+      sign_in @user
       flash[:success] = "Rejestracja zakończona powodzeniem"
       redirect_to root_path
     else

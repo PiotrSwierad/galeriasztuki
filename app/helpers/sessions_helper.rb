@@ -22,5 +22,4 @@ module SessionsHelper
 			end
 		end
 	end
-
 end

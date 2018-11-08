@@ -1,15 +1,54 @@
 <% provide(:title, 'Katalog') %>
 
-<%= link_to 'Dodaj wpis', new_art_path, class: "btn btn-primary" %><br>
+<% if current_user.isAdmin? %>
+	<%= link_to 'Dodaj wpis', new_art_path, class: "btn btn-primary" %><br>
+<% end %>
 
 <div class="row text-center text-lg-left">
 	<% @arts.each do |art| %>  		
   		<div class="col-lg-3 col-md-4 col-xs-6" style="padding: 10px">		
-  			<%= link_to art.image, :rel => "lightbox", data: { title: art.title+" - "+art.author} do %>
+  			<%= link_to art, data: {fancybox: 'gallery', 
+  										caption: art.title+" - "+art.author,
+  										src: image_tag(art.image).from(10).to(-1) } do %>
   				<%= image_tag art.image.variant(resize: "x200"), class: "img-fluid img-thumbnail" %>
   			<% end %>
 		</div>
  	<% end %>
 </div>
+
+
+
+<script type="text/javascript">
+	$( '[data-fancybox]' ).fancybox({
+		lang : 'pl',
+		i18n : {
+			'pl' : {
+				CLOSE : 'Zamknij',
+				ZOOM : 'Przybliż',
+				DOWNLOAD : 'Pobierz',
+				PREV : 'Poprzedni',
+				NEXT : 'Następny',
+				PLAY_START : 'Pokaz slajdów',
+				THUMBS : 'Miniatury'
+			}
+		}
+	});
+	$.fancybox.defaults.buttons = ['zoom', 'close'];
+
+	$('[data-fancybox="gallery"]').fancybox({
+		caption : function( instance, item ) {
+			var caption = $(this).data('caption') || '';
+
+			if ( item.type === 'image' ) {
+				caption = (caption.length ? caption + '<br />' : '') + '<a href="' + this + '" class="btn btn-info">Download image</a>' ;
+			}
+
+			return caption;
+		}
+	});
+</script>
+
+
+
 
 
