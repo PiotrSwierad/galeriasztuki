@@ -22,4 +22,8 @@ module SessionsHelper
 			end
 		end
 	end
+
+	def isAdmin?
+		signed_in? && current_user.isAdmin
+	end
 end

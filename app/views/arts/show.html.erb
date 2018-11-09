@@ -1,16 +1,32 @@
 <% provide(:title, 'Wpis') %>
 
-<%= image_tag(@art.image, style: 'width:50%') %>
 
-<p>
-  <strong>Author:</strong>
-  <%= @art.author %>
-</p>
+<div class="col-12 col-md-8">
 
-<p>
-  <strong>Title:</strong>
-  <%= @art.title %>
-</p>
+	<%= image_tag @art.image, style: "max-width: 100%; max-height: 100vh" %>
 
-<%= link_to 'Edit', edit_art_path(@art) %> |
-<%= link_to 'Back', arts_path %>
+</div>
+
+<div class="col-6 col-md-4">
+	<div>
+		<%= link_to 'Powrót do katalogu', arts_path, class: "btn btn-primary"%>
+		<% if isAdmin? %>
+			<%= link_to 'Edytuj', edit_art_path(@art), class: "btn btn-warning" %>
+			<%= link_to 'Usuń', @art, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć wpis?'}, class: "btn btn-danger" %>
+		<% end %>
+	</div>
+
+	<div>
+		<p>
+			<strong>Author:</strong>
+			<%= @art.author %>
+		</p>
+
+		<p>
+			<strong>Title:</strong>
+			<%= @art.title %>
+		</p>
+	</div>
+	
+</div>
+
