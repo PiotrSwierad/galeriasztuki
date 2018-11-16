@@ -7,15 +7,16 @@
 			<ul class="nav navbar-nav navbar-left">
 				<li><%= link_to "Katalog", arts_path %></li>
 				<li><%= link_to "O nas", about_path %></li>
-				<li><%= link_to "Kontakt", contact_path %></li>
-				<% if isAdmin? %>
-				<li><%= link_to "Panel Administracyjny", '/', class: "btn btn-warning" %></li>
-				<% end %>
+				<li><%= link_to "Kontakt", contact_path %></li>			
 			</ul>
 		</nav>
 
 		<nav>
 			<ul class="nav navbar-nav navbar-right">
+				<% if isAdmin? %>
+				<li><%= link_to "Panel Administracyjny", admin_path, class: "btn btn-warning" %></li>
+				<% end %>
+
 				<% if signed_in? %>
 				<li><%= link_to "Witaj #{current_user.email}", "users/#{current_user.id}" %>
 				<li><%= link_to "Wyloguj się", signout_path, method: :delete %></li>

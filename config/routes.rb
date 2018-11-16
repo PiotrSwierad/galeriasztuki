@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   resources :arts
 
-
-
   get 'sessions/new'
 
   get 'session/new'
@@ -21,10 +19,11 @@ Rails.application.routes.draw do
 
   resources :users
 
-
   get '/about', to: 'home#about'
 
   get '/contact', to: 'home#contact'
+
+  get '/admin', to: 'home#admin'
 
   root 'home#index'
 

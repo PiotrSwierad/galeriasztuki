@@ -2,9 +2,9 @@
 
 
 
-<div class="col-12 col-md-8 text-center">
+<div class="col-6 col-md-8 text-center img-thumbnail">
 		<%= link_to @art.image, data: {fancybox: ''} do %>
-			<%= image_tag @art.image.variant(resize: "x700"), style: "max-width: 100%; max-height: 75vh;", class: "img-thumbnail" %>
+			<%= image_tag @art.image.variant(resize: "x700"), style: "max-width: 100%; max-height: 75vh;" %>
 		<% end %>
 </div>
 
@@ -22,15 +22,20 @@
 		<% end %>
 	</div>
 	<br>
-	<div>
-		<h2><%= @art.title %></h2><br>
-		<h4><%= @art.author %></h4><br>
+	<div class="jumbotron" style="background-color: white;">
+		<p class="art_title_author">
+			<h3><%= @art.title %></h3><br>
+			<%= @art.author %>
+		</p><br>
 
 		<strong>Rok: </strong><%= @art.year %><br>
 		<strong>Technika: </strong><%= @art.technique %><br>
-		<% if @art.availability %>
-		<strong>Cena: </strong><%= @art.price %><br>
-		<% end %>
+		<strong>Cena: </strong>
+			<% if @art.availability %>
+				<%= @art.price %> PLN<br>
+			<% else %>
+				Obraz nie na sprzedaż
+			<% end %>
 	</div>
 	
 </div>

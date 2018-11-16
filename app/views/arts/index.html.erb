@@ -11,9 +11,9 @@
   										caption: art.title+" - "+art.author,
   										src: image_tag(art.image).from(10).to(-1) } do %>
   				<div class="img-fluid img-thumbnail">
-  					<%= image_tag art.image.variant(resize: "x200") %><br>
-  					<%= art.author %><br>
+  					<%= image_tag art.image.variant(resize: "x200"), :class => "art_image" %><br>
   					<%= art.title %><br>
+  					<%= art.author %><br>
   				</div>
   			<% end %>
 		</div>

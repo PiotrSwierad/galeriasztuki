@@ -11,12 +11,13 @@
 <body>
 	<%= render 'layouts/header' %>
 
-	<div class="container jumbotron container-fluid" style="width: 75vw">
 
 		<% flash.each do |type, value|%>
 			<div class="alert alert-<%= type %>"><%= value %></div>
 		<% end %>
 
+
+	<div class="container jumbotron container-fluid" style="width: 75vw">
 		<%= yield %>
 	</div>
 
