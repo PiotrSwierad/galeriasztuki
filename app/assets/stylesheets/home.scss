@@ -2,7 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body { 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+bodyasd { 
   background: url(/assets/background.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -10,3 +29,6 @@ body {
   background-size: cover;
 }
 
+html * {
+	font-family: Helvetica;
+}
