@@ -1,0 +1,41 @@
+<% provide(:title, 'Dodaj') %>
+
+<h1>Dodaj obraz do strony głównej</h1>
+
+<div class="row text-center text-lg-left">
+	<% @arts.each do |art| %>  		
+  		<div class="col-lg-3 col-md-4 col-xs-6" style="padding: 10px">		
+
+  				<div class="img-fluid img-thumbnail">
+  					<%= image_tag art.image.variant(resize: "x200"), :class => "art_image" %><br>
+  					<%= art.title %><br>
+  					<%= art.author %><br>
+  				</div>
+
+		</div>
+ 	<% end %>
+</div>
+
+
+<%= form_for @featured_art do |f| %>
+
+  <div class="field">
+    <%= f.label :x_coord %>
+    <%= f.number_field :x_coord %>
+  </div>
+
+  <div class="field">
+    <%= f.label :y_coord %>
+    <%= f.number_field :y_coord %>
+  </div>
+
+  <div class="field">
+    <%= f.label :art_id %>
+    <%= f.number_field :art_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

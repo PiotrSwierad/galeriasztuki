@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  x_coord: 1
+  y_coord: 1
+  art: one
+
+two:
+  x_coord: 1
+  y_coord: 1
+  art: two

@@ -1,0 +1,31 @@
+<%= form_with(model: featured_art, local: true) do |form| %>
+  <% if featured_art.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(featured_art.errors.count, "error") %> prohibited this featured_art from being saved:</h2>
+
+      <ul>
+      <% featured_art.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :x_coord %>
+    <%= form.number_field :x_coord %>
+  </div>
+
+  <div class="field">
+    <%= form.label :y_coord %>
+    <%= form.number_field :y_coord %>
+  </div>
+
+  <div class="field">
+  <%= form.collection_select(:art_id, @arts.all, :id, :title , {:include_blank =>'Wybierz obraz'}  %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'New Featured Art', new_featured_art_path %>
+
+<h1>Featured Arts</h1>
+
+<div class="grid">
+  <% @arts.each do |art| %>   
+  <div class="item">
+    <div class="item-content img-fluid img-thumbnail">
+      <%= image_tag art.image %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+
+<script type="text/javascript">
+  var grid = new Muuri('.grid', {
+    dragEnabled: true
+  });
+</script>
+
