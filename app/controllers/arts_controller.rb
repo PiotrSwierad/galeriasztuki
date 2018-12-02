@@ -2,7 +2,9 @@ class ArtsController < ApplicationController
   before_action :verify_admin, only: [:new, :edit, :create, :update, :destroy]
 
   def index
-    @arts = Art.all
+    #@arts = Art.title_contains(params[:title_contains]).paginate(page: params[:page], :per_page => 4)
+
+    @arts = Art.search(params[:title_contains]).paginate(page: params[:page], :per_page => 12)
   end
 
   # GET /arts/1

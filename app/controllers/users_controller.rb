@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :verify_user, only: [:show, :edit, :update, :destroy]
 
   def index
+    @users = User.paginate(page: params[:page])
   end
 
   # GET /users/1

@@ -55,3 +55,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'bcrypt', '3.1.12'
 
 gem "mini_magick"
+
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'

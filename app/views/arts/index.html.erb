@@ -1,8 +1,23 @@
 <% provide(:title, 'Katalog') %>
 
-<% if isAdmin? %>
-	<%= link_to 'Dodaj wpis', new_art_path, class: "btn btn-success" %><br>
-<% end %>
+<div id="art_nav" class="row">
+	<div id="art_nav_left" class="float-left">
+		<%= will_paginate @arts, :previous_label => 'Poprzednia', :next_label => 'Następna' %>
+	</div>
+	
+	<div id="art_nav_right" class="float-right">
+		<%= form_tag arts_path, :method => 'get' do %>
+			<%= text_field_tag :title_contains, params[:title_contains], class: "form control" %>
+			<%= submit_tag "Szukaj", :title => nil, class: "btn btn-primary" %>
+
+			<% if isAdmin? %>
+				<%= link_to 'Dodaj wpis', new_art_path, class: "btn btn-warning" %>
+			<% end %>
+		<% end %>
+
+
+	</div>
+</div>	
 
 <div class="row text-center text-lg-left" style="padding: 10px">
 	<% @arts.each do |art| %>  		

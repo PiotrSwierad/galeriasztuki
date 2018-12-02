@@ -6,4 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-pages = Page.create(about: 'To jest strona O nas.', contact: 'To jest strona kontaktowa')
+User.create!(email: "testowy@mail.org",
+             password:              "password",
+             password_confirmation: "password")
+
+99.times do |n|
+	email = "testowy-#{n+1}@mail.org"
+  	password = "password"
+  	User.create!(email: email,
+               	password:              password,
+               	password_confirmation: password)
+end
