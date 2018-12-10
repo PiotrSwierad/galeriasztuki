@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :verify_user, only: [:show, :edit, :update, :destroy]
+  #before_action :verify_user, only: [:show, :edit, :update, :destroy]
+  before_action :verify_admin, only: [:index, :show, :edit, :update, :destroy]
+
 
   def index
     @users = User.paginate(page: params[:page])
@@ -51,4 +53,15 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def verify_admin
+    if current_user.nil?
+      redirect_to signin_path
+      flash.now[:danger] = 'Zaloguj się!'
+    elsif !current_user.isAdmin
+      redirect_to root_path
+      flash.now[:danger] = 'Nie masz uprawnień!'
+    end
+  end
+
 end

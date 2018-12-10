@@ -1,10 +1,11 @@
 <div class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header" style="padding-top: 7px;">
-				<%= link_to image_tag("logo.jpg"), root_path %>
+				<%#= link_to image_tag("logo.jpg"), root_path %>
 		</div>
 		<nav>			
 			<ul class="nav navbar-nav navbar-left">
+				<li style="font-size: 20px; font-style: bold"><%= link_to "Galeria Sztuki", root_path %></li>
 				<li><%= link_to "Katalog", arts_path %></li>
 				<li><%= link_to "O nas", about_path %></li>
 				<li><%= link_to "Kontakt", contact_path %></li>			
@@ -18,7 +19,7 @@
 				<% end %>
 
 				<% if signed_in? %>
-				<li><%= link_to "Witaj #{current_user.email}", "users/#{current_user.id}" %>
+				<li><%= link_to "Witaj #{current_user.email}", "#" %>
 				<li><%= link_to "Wyloguj się", signout_path, method: :delete %></li>
 				<% else %>
 				<li><%= link_to "Logowanie", signin_path %>

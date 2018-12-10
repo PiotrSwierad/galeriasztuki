@@ -1,15 +1,13 @@
 class ArtsController < ApplicationController
   before_action :verify_admin, only: [:new, :edit, :create, :update, :destroy]
+  before_action :get_art, only: [:show, :edit, :update, :destroy]
 
   def index
-    #@arts = Art.title_contains(params[:title_contains]).paginate(page: params[:page], :per_page => 4)
-
     @arts = Art.search(params[:title_contains]).paginate(page: params[:page], :per_page => 12)
   end
 
   # GET /arts/1
   def show
-    @art = Art.find(params[:id])
   end
 
   # GET /arts/new
@@ -19,7 +17,6 @@ class ArtsController < ApplicationController
 
   # GET /arts/1/edit
   def edit
-    @art = Art.find(params[:id])
   end
 
   # POST /arts
@@ -34,7 +31,6 @@ class ArtsController < ApplicationController
 
   # PATCH/PUT /arts/1
   def update
-    @art = Art.find(params[:id])
     if @art.update_attributes(art_params)
       redirect_to @art
     else
@@ -44,7 +40,6 @@ class ArtsController < ApplicationController
 
   # DELETE /arts/1
   def destroy
-    @art = Art.find(params[:id])
     if @art.destroy
       redirect_to arts_url
     end
@@ -61,6 +56,10 @@ class ArtsController < ApplicationController
       redirect_to root_path
       flash.now[:danger] = 'Nie masz uprawnień!'
     end
+  end
+
+  def get_art
+    @art = Art.find(params[:id])
   end
 
   def art_params

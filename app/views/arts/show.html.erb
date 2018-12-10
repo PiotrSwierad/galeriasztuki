@@ -13,7 +13,7 @@
 			<%= link_to 'Powrót', arts_path, class: "btn btn-primary"%>
 
 		<%if !isAdmin? %>
-			<%= link_to 'Zapytaj o dostępność', root_path, class: "btn btn-success"%>
+			<%= link_to 'Zapytaj o dostępność', contact_path, class: "btn btn-success"%>
 		<% end %>
 
 		<% if isAdmin? %>

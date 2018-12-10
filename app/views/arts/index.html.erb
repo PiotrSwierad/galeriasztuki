@@ -1,13 +1,13 @@
 <% provide(:title, 'Katalog') %>
-
 <div id="art_nav" class="row">
 	<div id="art_nav_left" class="float-left">
+
 		<%= will_paginate @arts, :previous_label => 'Poprzednia', :next_label => 'Następna' %>
 	</div>
 	
-	<div id="art_nav_right" class="float-right">
+	<div id="art_nav_right" class="float-right form-inline">
 		<%= form_tag arts_path, :method => 'get' do %>
-			<%= text_field_tag :title_contains, params[:title_contains], class: "form control" %>
+			<%= text_field_tag :title_contains, params[:title_contains], class: "form-control" %>
 			<%= submit_tag "Szukaj", :title => nil, class: "btn btn-primary" %>
 
 			<% if isAdmin? %>
@@ -20,6 +20,7 @@
 </div>	
 
 <div class="row text-center text-lg-left" style="padding: 10px">
+<% if @arts.any? %>
 	<% @arts.each do |art| %>  		
   		<div class="col-lg-3 col-md-4 col-xs-6 art_container">		
   			<%= link_to art, data: {fancybox: 'gallery', 
@@ -35,6 +36,10 @@
   			<% end %>
 		</div>
  	<% end %>
+<% else %>
+	<p>Nie znaleziono obrazów o podanych kryteriach.</p>
+<% end %>
+
 </div>
 
 <script type="text/javascript">
