@@ -12,9 +12,7 @@
 
 <div id="arts"  data-url="<%= sort_arts_path %>">
 	<% @arts.each do |art| %>
-		<div class="col-lg-3 col-md-4 col-xs-6 art_container">
-			<%= link_to image_tag(art.image, :class => "art_image"), art,  id: dom_id(art) %>
-		</div>
+			<%= link_to image_tag(art.image, :class => "art_image"), art, class: "col-lg-3 col-md-4 col-xs-6 art_container", id: dom_id(art) %>
 	<% end %>
 </div>
 
