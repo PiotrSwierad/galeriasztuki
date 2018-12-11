@@ -14,3 +14,5 @@
 //= require turbolinks
 //= require_tree .
 //= require trix
+//= require jquery-ui/widget
+//= require jquery-ui/sortable

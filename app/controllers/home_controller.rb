@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 
   # GET
   def index
+    @arts = Art.where(:featured => true).order(:position)
   end
 
   # GET
@@ -23,7 +24,7 @@ class HomeController < ApplicationController
     if @page.update_attributes(page_params)
       redirect_to admin_path
     else
-      redner :admin
+      render :admin
     end
   end
 

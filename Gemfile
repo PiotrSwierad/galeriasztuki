@@ -61,3 +61,6 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
 gem 'trix-rails', require: 'trix'
+
+gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
+gem 'acts_as_list'

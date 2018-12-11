@@ -17,11 +17,19 @@
 		<% end %>
 
 		<% if isAdmin? %>
+			<% if @art.featured == true %>
+				<%= link_to 'Usuń ze strony głównej', @art, method: :make_featured, data: { confirm: 'Czy na pewno chcesz usunąć wpis?'}, class: "btn btn-danger" %>
+			<% else %>
+				<%= link_to 'Dodaj na stronie głównej', @art, method: :make_featured, data: { confirm: 'Czy na pewno chcesz dodać wpis?'}, class: "btn btn-success" %>
+			<% end %>
+			
 			<%= link_to 'Edytuj', edit_art_path(@art), class: "btn btn-warning" %>
 			<%= link_to 'Usuń', @art, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć wpis?'}, class: "btn btn-danger" %>
 		<% end %>
 	</div>
+
 	<br>
+	
 	<div class="jumbotron" style="background-color: white;">
 		<p class="art_title_author">
 			<h3><%= @art.title %></h3><br>

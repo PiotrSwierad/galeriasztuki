@@ -1,6 +1,6 @@
 class ArtsController < ApplicationController
-  before_action :verify_admin, only: [:new, :edit, :create, :update, :destroy]
-  before_action :get_art, only: [:show, :edit, :update, :destroy]
+  before_action :verify_admin, only: [:new, :edit, :create, :update, :destroy, :make_featured]
+  before_action :get_art, only: [:show, :edit, :update, :destroy, :make_featured]
 
   def index
     @arts = Art.search(params[:title_contains]).paginate(page: params[:page], :per_page => 12)
@@ -22,6 +22,7 @@ class ArtsController < ApplicationController
   # POST /arts
   def create
     @art = Art.new(art_params)
+    @art.featured = false
     if @art.save
       redirect_to @art
     else
@@ -44,6 +45,30 @@ class ArtsController < ApplicationController
       redirect_to arts_url
     end
   end
+
+  def make_featured
+    if @art.featured
+      @art.featured = false;
+    else
+      @art.featured = true;
+    end
+
+    if @art.save
+      redirect_to @art
+    else
+      render :show
+    end
+  end
+
+  #funkcja sortowania obrazów po ustaleniu ich układu na home page
+  def sort
+    params[:art].each_with_index do |id, index|
+      Art.where(id: id).update_all(position: index + 1)
+    end
+
+    head :ok
+  end
+
 
 
   private

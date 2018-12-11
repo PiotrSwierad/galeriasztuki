@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :arts
+  resources :arts do
+    collection do
+      patch :sort
+    end
+  end
+
+  post '/arts/:id', to: 'arts#make_featured' 
 
 
   get 'sessions/new'
