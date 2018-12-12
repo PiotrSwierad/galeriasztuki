@@ -14,6 +14,11 @@
                	password_confirmation: password)
 end
 
+User.create!(email: "admin@admin.com",
+             password:              "Test90()",
+             password_confirmation: "Test90()",
+             isAdmin: true)
+
 Page.create!(about: "To jest przykładowy tekst dla strony O nas - możesz zmienić go w panelu administracyjnym",
 			 contact: "To jest przykładowy tekst dla strony Kontaks - możesz zmienić go w panelu administracyjnym"
 			)
