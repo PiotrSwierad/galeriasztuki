@@ -6,17 +6,33 @@
 
 <% if isAdmin? %>
 
+<div>
+	<%= link_to "Dodaj pole", home_createPlaceholder_path, class: "btn btn-success" %><br><br>
+</div>
+
+
+
 <div id="arts"  data-url="<%= sort_arts_path %>">
 	<% @arts.each do |art| %>
+		<% if art.title == "!placeholder!" %>
+			<%= link_to image_tag("white-placeholder", :class => "art_image"), art, method: :delete, class: "col-lg-3 col-md-4 col-xs-6 art_container", id: dom_id(art) %>		
+		<% else %>
 			<%= link_to image_tag(art.image, :class => "art_image"), art, class: "col-lg-3 col-md-4 col-xs-6 art_container", id: dom_id(art) %>
+		<% end %>
 	<% end %>
 </div>
+
+
 
 <% else %>
 
 <div>
 	<% @arts.each do |art| %>
-			<%= link_to image_tag(art.image, :class => "art_image"), art, class: "col-lg-3 col-md-4 col-xs-6 art_container" %>
+		<% if art.title == "!placeholder!" %>
+			<%= image_tag("white-placeholder", :class => "col-lg-3 col-md-4 col-xs-6 art_container art_image")%>
+		<% else %>
+			<%= link_to image_tag(art.image, :class => "art_image"), art, class: "col-lg-3 col-md-4 col-xs-6 art_container"%>
+		<% end %>
 	<% end %>
 </div>
 

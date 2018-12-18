@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   post '/arts/:id', to: 'arts#make_featured' 
 
+  get 'home/createPlaceholder', to: 'home#createPlaceholder'
+  
 
   get 'sessions/new'
 

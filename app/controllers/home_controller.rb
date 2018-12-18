@@ -28,6 +28,19 @@ class HomeController < ApplicationController
     end
   end
 
+  #POST
+  def createPlaceholder
+    art = Art.new
+    art.title = "!placeholder!"
+    art.featured = true
+    art.position = Art.all.where(:featured => true).count
+    art.hidden = true
+    if art.save
+      redirect_to root_path
+    else
+      flash[:danger] = 'Coś poszło nie tak!'
+    end
+  end
 
   private
 

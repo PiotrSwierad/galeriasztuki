@@ -7,6 +7,8 @@ document.addEventListener("turbolinks:load", function(){
 				type: "PATCH",
 				data: $(this).sortable('serialize'),
 			});	
+
+			console.log($(this).sortable('serialize'));
 		}
 	});
 

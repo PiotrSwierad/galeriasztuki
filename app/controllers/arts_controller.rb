@@ -4,6 +4,7 @@ class ArtsController < ApplicationController
 
   def index
     @arts = Art.search(params[:title_contains]).paginate(page: params[:page], :per_page => 12)
+    @arts = @arts.where(:hidden => false)
   end
 
   # GET /arts/1
@@ -23,6 +24,7 @@ class ArtsController < ApplicationController
   def create
     @art = Art.new(art_params)
     @art.featured = false
+    @art.hidden = false
     if @art.save
       redirect_to @art
     else
@@ -42,7 +44,7 @@ class ArtsController < ApplicationController
   # DELETE /arts/1
   def destroy
     if @art.destroy
-      redirect_to arts_url
+      redirect_to root_path
     end
   end
 
@@ -68,8 +70,6 @@ class ArtsController < ApplicationController
 
     head :ok
   end
-
-
 
   private
 
