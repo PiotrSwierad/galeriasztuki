@@ -4,20 +4,52 @@
 
 <%= form_for(:page, url: admin_path) do |f| %>
 
-	<div id="about_section" class="">
-		<h2>Edycja strony "O nas"</h2>	
-		<%= f.trix_editor :about, :style => "background-color: white" %>
-		<br>
-	</div>
+<div id="about_section" class="">
+	<h3>Edycja strony "O nas"</h3>	
+	<%= f.trix_editor :about, :style => "background-color: white" %>
+	<br>
+</div>
 
-	<div id="contact_section" class="">
-		<h2>Edycja strony "Kontakt"</h2>
-		<%= f.trix_editor :contact, :style => "background-color: white" %>
-		<br>
-	</div>
+<div id="contact_section" class="">
+	<h3>Edycja strony "Kontakt"</h3>
+	<%= f.trix_editor :contact, :style => "background-color: white" %>
+	<br>
+</div>
 
-	<div>
-		<%= f.submit "Aktualizuj", class: "btn btn-primary" %>
-	</div>
-
+<div>
+	<%= f.submit "Aktualizuj", class: "btn btn-primary" %>
+</div>
 <% end %>
+
+<br><br>
+
+<div class="panel panel-default">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Autor</th>
+				<th scope="col">Tytuł</th>
+				<th scope="col">Rok</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @arts.each do |art| %>
+			<tr>
+				<td><%= art.author %></td>
+				<td><%= art.title %></td>
+				<td><%= art.year %></td>
+				<td><%= link_to 'Usuń', art, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć wpis?'}, class: "btn btn-danger" %></td>
+				<td>
+					<% if art.featured == true %>
+						<%= link_to 'Usuń ze strony głównej', art, method: :make_featured, data: { confirm: 'Czy na pewno chcesz usunąć wpis?'}, class: "btn btn-danger" %>
+					<% else %>
+						<%= link_to 'Dodaj na stronie głównej', art, method: :make_featured, data: { confirm: 'Czy na pewno chcesz dodać wpis?'}, class: "btn btn-primary" %>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+

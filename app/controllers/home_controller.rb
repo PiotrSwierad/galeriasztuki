@@ -56,6 +56,7 @@ class HomeController < ApplicationController
 
   def get_page
     @page = Page.first
+    @arts = Art.where(:hidden => false)
   end
 
   def page_params

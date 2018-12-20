@@ -10,4 +10,9 @@ class Art < ApplicationRecord
 			all
 		end
 	end
+
+	validates :author, :presence => true
+	validates :title, :presence => true
+	validates :year, :presence => true
+	validates :image, :presence => true
 end
