@@ -1,10 +1,10 @@
 class ArtsController < ApplicationController
   before_action :verify_admin, only: [:new, :edit, :create, :update, :destroy, :make_featured]
   before_action :get_art, only: [:show, :edit, :update, :destroy, :make_featured]
+  skip_before_action :verify_authenticity_token
 
   def index
     @arts = Art.search(params[:title_contains]).paginate(page: params[:page], :per_page => 12)
-    @arts = @arts.where(:hidden => false)
   end
 
   # GET /arts/1
@@ -62,10 +62,13 @@ class ArtsController < ApplicationController
     end
   end
 
-  #funkcja sortowania obrazów po ustaleniu ich układu na home page
+  #funkcja update layoutu do bazy
   def sort
-    params[:art].each_with_index do |id, index|
-      Art.where(id: id).update_all(position: index + 1)
+    @featuredArts = JSON.parse(params[:data_value])
+    @featuredArts.each do |f|
+      if !f["id"].nil?
+        Art.where(id: f["id"]).update_all(data_sizex: f["sizex"], data_sizey: f["sizey"], data_col: f["data-col"], data_row: f["data-row"])
+      end  
     end
 
     head :ok

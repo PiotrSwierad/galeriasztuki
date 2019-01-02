@@ -36,3 +36,40 @@ html *{
 .jumbotron {
   padding-top: 20px !important;
 }
+
+.gridster{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gridster li{
+  background-color: white;
+}
+
+.gridster ul {
+  list-style-type: none;
+}
+
+.home_image_inner img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+home_image_box {
+  background-color: #00ff00;
+  width: 75px;
+  height: 75px;
+  position: relative;
+}
+
+
+

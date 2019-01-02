@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_18_191835) do
+ActiveRecord::Schema.define(version: 2018_12_26_215052) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -43,8 +43,10 @@ ActiveRecord::Schema.define(version: 2018_12_18_191835) do
     t.integer "price"
     t.boolean "availability"
     t.boolean "featured"
-    t.integer "position"
-    t.boolean "hidden"
+    t.integer "data_sizey"
+    t.integer "data_sizez"
+    t.integer "data_col"
+    t.integer "data_row"
   end
 
   create_table "pages", force: :cascade do |t|

@@ -22,7 +22,7 @@
 <div class="row text-center text-lg-left" style="padding: 10px">
 <% if @arts.any? %>
 	<% @arts.each do |art| %>  		
-  		<div class="col-lg-3 col-md-4 col-xs-6 art_container">		
+  		<div class="col-lg-3 col-md-4 col-xs-6 art_container img-thumbnail">		
   			<%= link_to art, data: {fancybox: 'gallery', 
   										caption: "<b>"+art.title+" - "+art.author+"</b>",
   										src: image_tag(art.image).from(10).to(-1) } do %>		

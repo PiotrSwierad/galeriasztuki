@@ -4,37 +4,91 @@
 	<h1>Strona główna - galeria sztuki</h1>
 </div>
 
-<% if isAdmin? %>
-
-<div>
-	<%= link_to "Dodaj pole", home_createPlaceholder_path, class: "btn btn-success" %><br><br>
+<div style="width: 50%; margin: 0 auto">
+	<div class="gridster" data-url="<%= sort_arts_path %>" >
+		<ul>
+			<% @arts.each do |art| %>
+			<li data-sizex="<%= art.data_sizex %>" data-sizey="<%= art.data_sizey %>" data-col="<%= art.data_col %>" data-row="<%= art.data_row %>" data-id="<%= art.id %>">
+				<div class="gridster-box home_image_box">
+					<div class="handle-resize home_image_inner">							
+						<% if isAdmin? %>	
+							<%= image_tag(art.image) %> 			 	        	
+						<% else %>
+							<%= link_to image_tag(art.image), art %>
+						<% end %>
+					</div>
+				</div>
+			</li>
+			<% end %>
+		</ul>
+	</div>
 </div>
 
 
+<script type="text/javascript">
 
-<div id="arts"  data-url="<%= sort_arts_path %>">
-	<% @arts.each do |art| %>
-		<% if art.title == "!placeholder!" %>
-			<%= link_to image_tag("white-placeholder", :class => "art_image"), art, method: :delete, class: "col-lg-3 col-md-4 col-xs-6 art_container", style: "border-style: solid;", id: dom_id(art) %>		
-		<% else %>
-			<%= link_to image_tag(art.image, :class => "art_image"), art, class: "col-lg-3 col-md-4 col-xs-6 art_container", style: "border-style: solid;", id: dom_id(art) %>
+	function serializeGridster() {
+		var serializeJsonArr = new Array();
+		$(".gridster ul li").each(function(i) {
+			var serializeJson = {};
+
+			var id = $(this).attr('data-id');
+			var sizex = $(this).attr('data-sizex');
+			var sizey = $(this).attr('data-sizey');
+			var row = $(this).attr('data-row');
+			var col = $(this).attr('data-col');
+
+			serializeJson["id"] = id;
+			serializeJson["sizex"] = sizex;
+			serializeJson["sizey"] = sizey;
+			serializeJson["data-col"] = col;
+			serializeJson["data-row"] = row;
+
+			serializeJsonArr.push(serializeJson);
+		})
+		return serializeJsonArr;
+	}
+
+	var gridster = null;
+	$(document).ready(function () {
+		gridster = $(".gridster ul").gridster({
+			widget_base_dimensions: ['auto', 140],
+			autogenerate_stylesheet: true,
+			min_cols: 1,
+			max_cols: 12,
+			widget_margins: [5, 5],
+			resize: {
+				enabled: true,
+
+				stop: function (e, ui) {
+					var homepageLayout = serializeGridster();
+					console.log(homepageLayout);
+					$.ajax({
+						url: "/arts/sort",
+						type: "POST",
+						data: { data_value: JSON.stringify(homepageLayout)}
+					});
+				}
+			},
+
+			draggable: {
+				stop: function (e, ui) {
+					var homepageLayout = serializeGridster();
+					console.log(homepageLayout);
+					$.ajax({
+						url: "/arts/sort",
+						type: "POST",
+						data: { data_value: JSON.stringify(homepageLayout)}
+					});
+				}
+			}
+		}).data('gridster');
+		$('.gridster  ul').css({'padding': '0'});
+
+		<% if !isAdmin? %>
+		gridster.disable();
+		gridster.disable_resize();
 		<% end %>
-	<% end %>
-</div>
 
-
-
-<% else %>
-
-<div>
-	<% @arts.each do |art| %>
-		<% if art.title == "!placeholder!" %>
-			<%= image_tag("white-placeholder", :class => "col-lg-3 col-md-4 col-xs-6 art_container art_image")%>
-		<% else %>
-			<%= link_to image_tag(art.image, :class => "art_image"), art, class: "col-lg-3 col-md-4 col-xs-6 art_container" %>
-		<% end %>
-	<% end %>
-</div>
-
-<% end %>
-
+	});
+</script>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :arts do
     collection do
-      patch :sort
+      post :sort
     end
   end
 

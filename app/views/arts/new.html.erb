@@ -10,39 +10,27 @@
 		<div class="form-group col-lg-12">
 			<label>Tytuł</label>
 			<%= f.text_field :title, class: 'form-control'%>
-		</div>
-
-		<div class="form-group col-lg-12">
+		
 			<label>Autor</label>
 			<%= f.text_field :author, class: 'form-control'%>
-		</div>
-
-		<div class="form-group col-lg-12">
+		
 			<label>Rok</label>
 			<%= f.number_field :year, class: 'form-control'%>
-		</div>
-
-		<div class="form-group col-lg-12">
+		
 			<label>Technika</label>
 			<%= f.text_field :technique, class: 'form-control'%>
-		</div>
-
-		<div class="form-group col-lg-12">
+		
 			<label>Cena (pozostaw puste jeśli nie na sprzedaż)</label>
 			<%= f.number_field :price, class: 'form-control'%>
-		</div>
-
-		<div class="form-group col-lg-12">
+		
 			<label>Dostępność:</label>
-			<%= f.check_box :availability%>
-		</div>
+			<%= f.check_box :availability %>
+			<br>
 
-		<div class="form-group col-lg-12">
 			<label>Zdjęcie</label>
-			<%= f.file_field :image%>
-		</div>
+			<%= f.file_field :image %>
+			<br>
 
-		<div class="form-group col-lg-12">
 			<%= f.submit "Dodaj wpis", class: "btn btn-primary" %>
 		</div>
 

@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   # GET
   def index
-    @arts = Art.where(:featured => true).order(:position)
+    @arts = Art.where(:featured => true)
   end
 
   # GET
