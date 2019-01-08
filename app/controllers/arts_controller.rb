@@ -4,7 +4,7 @@ class ArtsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @arts = Art.search(params[:title_contains]).paginate(page: params[:page], :per_page => 12)
+    @arts = Art.search(params[:title_contains]).paginate(page: params[:page], :per_page => 8)
   end
 
   # GET /arts/1
@@ -24,7 +24,6 @@ class ArtsController < ApplicationController
   def create
     @art = Art.new(art_params)
     @art.featured = false
-    @art.hidden = false
     if @art.save
       redirect_to @art
     else
@@ -91,7 +90,7 @@ class ArtsController < ApplicationController
   end
 
   def art_params
-    params.require(:art).permit(:title, :author, :image, :technique, :year, :price, :availability)
+    params.require(:art).permit(:title, :author, :image, :technique, :year, :price, :availability, :width, :height)
   end
 
 end
